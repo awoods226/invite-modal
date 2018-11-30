@@ -8,6 +8,12 @@ export function CalculateSig(stringToSign, privateKey) {
   return encodeURIComponent(base64);
 }
 export function submitForm(values) {
+  let values_json = {
+    input_values: {
+      ...values
+    }
+  };
+
   let d = new Date();
   let expiration = 3600; // 1 hour,
   let unixtime = parseInt(d.getTime() / 1000);
@@ -19,7 +25,7 @@ export function submitForm(values) {
   let stringToSign =
     publicKey + ":" + method + ":" + route + ":" + future_unixtime;
   let sig = CalculateSig(stringToSign, privateKey);
-  let values_json = JSON.stringify(values);
+
   var url =
     "https://crosspointnv18.elitewebscapes.com/gravityformsapi/" +
     route +
@@ -36,6 +42,6 @@ export function submitForm(values) {
     headers: {
       "Content-Type": "application/json"
     },
-    body: values_json
+    body: JSON.stringify(values_json)
   });
 }

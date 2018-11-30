@@ -20,11 +20,10 @@ class App extends Component {
     this.setState({ showEmail: true });
   };
   handleInviteClick = () => {
-    //this.setState({ modalOpen: true });
     this.toggleModal();
   };
   toggleModal = () => {
-    this.setState({ modalOpen: !this.state.modalOpen });
+    this.setState({ modalOpen: !this.state.modalOpen, showEmail: false });
   };
   render() {
     const { showEmail, modalOpen } = this.state;
@@ -40,7 +39,10 @@ class App extends Component {
           <Modal.Header>Invite a Friend</Modal.Header>
           <Modal.Content>
             {!showEmail && (
-              <Invite onEmailClick={() => this.handleEmailClick()} />
+              <Invite
+                onEmailClick={() => this.handleEmailClick()}
+                onSubmit={() => this.toggleModal()}
+              />
             )}
             {showEmail && <EmailForm />}
           </Modal.Content>

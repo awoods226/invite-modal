@@ -12,7 +12,7 @@ class Invite extends Component {
     FB.ui(
       {
         method: "share",
-        href: "https://crosspointnv18.elitewebscapes.com/"
+        href: window.location.href
       },
       function(response) {}
     );

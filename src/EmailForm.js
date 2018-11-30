@@ -72,8 +72,7 @@ export default withFormik({
     from: yup.string().required("From name is required")
   }),
   handleSubmit: (values, { setSubmitting }) => {
-    // call gravity forms API here
-    submitForm(values)
+    submitForm({ input_1: values.from, input_3: values.email })
       .then(r => {
         console.log(r);
       })
@@ -81,7 +80,6 @@ export default withFormik({
         console.log(e);
       });
     setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
       setSubmitting(false);
     }, 1000);
   },
