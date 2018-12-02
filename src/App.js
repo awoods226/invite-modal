@@ -1,8 +1,8 @@
-import { Modal, Button, Image } from "semantic-ui-react";
+import { Modal, Image } from "semantic-ui-react";
 import Invite from "./Invite";
 import React, { Component } from "react";
 import EmailForm from "./EmailForm";
-import headerImg from "./images/headerimg.jpg";
+const headerImg = require("./headerimg.jpg");
 class App extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +26,10 @@ class App extends Component {
   toggleModal = () => {
     this.setState({ modalOpen: !this.state.modalOpen, showEmail: false });
   };
+  handleSubmit = () => {
+    debugger;
+    this.toggleModal();
+  };
   render() {
     const { showEmail, modalOpen } = this.state;
     return (
@@ -47,7 +51,7 @@ class App extends Component {
             {showEmail && (
               <EmailForm
                 onCancelClick={() => this.handleEmailBackClick()}
-                onSubmit={() => this.toggleModal()}
+                onSubmit={() => this.handleSubmit()}
               />
             )}
           </Modal.Content>

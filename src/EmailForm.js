@@ -1,4 +1,3 @@
-// import "semantic-ui-css/semantic.min.css";
 import "../node_modules/semantic-ui-css/components/button.min.css";
 import "../node_modules/semantic-ui-css/components/form.min.css";
 import "../node_modules/semantic-ui-css/components/message.min.css";
@@ -18,8 +17,7 @@ const EmailForm = props => {
     isValid,
     handleChange,
     handleBlur,
-    handleSubmit,
-    handleReset
+    handleSubmit
   } = props;
   return (
     <Form
@@ -54,6 +52,7 @@ const EmailForm = props => {
           id={"message"}
           value={values.message}
           onChange={handleChange}
+          rows={3}
           onBlur={handleBlur}
         />
       </Form.Field>
@@ -65,7 +64,9 @@ const EmailForm = props => {
       <Button type="submit" disabled={!dirty || isSubmitting}>
         Send
       </Button>
-      <Button onClick={() => props.onCancelClick()}>Cancel</Button>
+      <Button type="button" onClick={() => props.onCancelClick()}>
+        Cancel
+      </Button>
     </Form>
   );
 };
@@ -79,14 +80,19 @@ export default withFormik({
       .required("Email is required!"),
     from: yup.string().required("From name is required")
   }),
-  handleSubmit: (values, { setSubmitting }) => {
+  handleSubmit: (values, { props, setSubmitting }) => {
     submitForm({
       input_1: values.from,
       input_3: values.email,
       input_4: values.message
     })
-      .then(r => {})
-      .catch(e => {});
+      .then(r => {
+        props.onSubmit();
+      })
+      .catch(e => {
+        console.log(e);
+        props.onSubmit();
+      });
     setTimeout(() => {
       setSubmitting(false);
     }, 1000);

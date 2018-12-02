@@ -1,4 +1,4 @@
-import { Icon, Grid, Header, Label, GridColumn } from "semantic-ui-react";
+import { Icon, Grid, Header } from "semantic-ui-react";
 import React, { Component } from "react";
 
 /*global FB*/
@@ -32,7 +32,9 @@ class Invite extends Component {
       >
         <Grid.Row>
           <Grid.Column textAlign={"center"}>
-            <Header size="medium">Invite a friend</Header>
+            <Header className={"invite-header"} size="medium">
+              Invite a friend
+            </Header>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
