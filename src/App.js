@@ -1,8 +1,8 @@
-import { Modal, Button } from "semantic-ui-react";
+import { Modal, Button, Image } from "semantic-ui-react";
 import Invite from "./Invite";
 import React, { Component } from "react";
 import EmailForm from "./EmailForm";
-
+import headerImg from "./images/headerimg.jpg";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -10,14 +10,15 @@ class App extends Component {
       showEmail: false,
       modalOpen: false
     };
-    console.log("inside app constructor");
-    console.log(this.props.trigger);
     this.props.trigger.addEventListener("click", () =>
       this.handleInviteClick()
     );
   }
   handleEmailClick = () => {
     this.setState({ showEmail: true });
+  };
+  handleEmailBackClick = () => {
+    this.setState({ showEmail: false });
   };
   handleInviteClick = () => {
     this.toggleModal();
@@ -36,15 +37,19 @@ class App extends Component {
           size={"tiny"}
           closeIcon
         >
-          <Modal.Header>Invite a Friend</Modal.Header>
+          <Modal.Header className={"modal-header"}>
+            <Image src={headerImg} />
+          </Modal.Header>
           <Modal.Content>
             {!showEmail && (
-              <Invite
-                onEmailClick={() => this.handleEmailClick()}
+              <Invite onEmailClick={() => this.handleEmailClick()} />
+            )}
+            {showEmail && (
+              <EmailForm
+                onCancelClick={() => this.handleEmailBackClick()}
                 onSubmit={() => this.toggleModal()}
               />
             )}
-            {showEmail && <EmailForm />}
           </Modal.Content>
         </Modal>
       </div>

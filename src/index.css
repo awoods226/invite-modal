@@ -3,3 +3,26 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.ui.modal > .header.modal-header {
+  margin: 0;
+  padding: 0 !important;
+}
+
+.fb-label {
+  background-color: blue;
+  color: white;
+  border-radius: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.email-label {
+  background-color: purple;
+  color: white;
+  border-radius: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}

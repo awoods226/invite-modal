@@ -1,6 +1,6 @@
 require("es6-promise").polyfill();
 require("isomorphic-fetch");
-/*global CryptoJS*/
+var CryptoJS = require("crypto-js");
 
 export function CalculateSig(stringToSign, privateKey) {
   let hash = CryptoJS.HmacSHA1(stringToSign, privateKey);

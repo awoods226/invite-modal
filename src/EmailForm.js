@@ -7,7 +7,6 @@ import React from "react";
 import { withFormik } from "formik";
 import * as yup from "yup";
 import { submitForm } from "./Gfapi";
-//import FB from "fb";
 
 const EmailForm = props => {
   const {
@@ -49,7 +48,15 @@ const EmailForm = props => {
           placeholder="Enter To email address"
         />
       </Form.Field>
-
+      <Form.Field>
+        <label>Message</label>
+        <textarea
+          id={"message"}
+          value={values.message}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+      </Form.Field>
       <Message
         error
         header="Fields Required"
@@ -58,12 +65,13 @@ const EmailForm = props => {
       <Button type="submit" disabled={!dirty || isSubmitting}>
         Send
       </Button>
+      <Button onClick={() => props.onCancelClick()}>Cancel</Button>
     </Form>
   );
 };
 
 export default withFormik({
-  mapPropsToValues: () => ({ from: "", email: "" }),
+  mapPropsToValues: () => ({ from: "", email: "", message: "" }),
   validationSchema: yup.object().shape({
     email: yup
       .string()
@@ -72,13 +80,13 @@ export default withFormik({
     from: yup.string().required("From name is required")
   }),
   handleSubmit: (values, { setSubmitting }) => {
-    submitForm({ input_1: values.from, input_3: values.email })
-      .then(r => {
-        console.log(r);
-      })
-      .catch(e => {
-        console.log(e);
-      });
+    submitForm({
+      input_1: values.from,
+      input_3: values.email,
+      input_4: values.message
+    })
+      .then(r => {})
+      .catch(e => {});
     setTimeout(() => {
       setSubmitting(false);
     }, 1000);
