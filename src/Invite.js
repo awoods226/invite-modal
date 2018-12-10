@@ -1,3 +1,7 @@
+import "../node_modules/semantic-ui-css/components/icon.min.css";
+import "../node_modules/semantic-ui-css/components/grid.min.css";
+import "../node_modules/semantic-ui-css/components/header.min.css";
+import "../node_modules/semantic-ui-css/components/container.min.css";
 import { Icon, Grid, Header } from "semantic-ui-react";
 import React, { Component } from "react";
 

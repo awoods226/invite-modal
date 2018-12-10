@@ -1,4 +1,8 @@
-import { Modal, Image } from "semantic-ui-react";
+import "../node_modules/semantic-ui-css/components/modal.min.css";
+import "../node_modules/semantic-ui-css/components/dimmer.min.css";
+import "../node_modules/semantic-ui-css/components/image.min.css";
+import "../node_modules/semantic-ui-css/components/icon.min.css";
+import { Modal, Image, Icon } from "semantic-ui-react";
 import Invite from "./Invite";
 import React, { Component } from "react";
 import EmailForm from "./EmailForm";
@@ -8,7 +12,8 @@ class App extends Component {
     super(props);
     this.state = {
       showEmail: false,
-      modalOpen: false
+      modalOpen: false,
+      showEmailSent: false
     };
     this.props.trigger.addEventListener("click", () =>
       this.handleInviteClick()
@@ -27,11 +32,14 @@ class App extends Component {
     this.setState({ modalOpen: !this.state.modalOpen, showEmail: false });
   };
   handleSubmit = () => {
-    debugger;
-    this.toggleModal();
+    this.setState({ showEmailSent: true, showEmail: false });
+    setTimeout(this.toggleModal, 1750);
+  };
+  handlePortalClose = () => {
+    this.setState({ showEmailSent: false });
   };
   render() {
-    const { showEmail, modalOpen } = this.state;
+    const { showEmail, modalOpen, showEmailSent } = this.state;
     return (
       <div className="App">
         <Modal
@@ -45,7 +53,7 @@ class App extends Component {
             <Image src={headerImg} />
           </Modal.Header>
           <Modal.Content>
-            {!showEmail && (
+            {!showEmail && !showEmailSent && (
               <Invite onEmailClick={() => this.handleEmailClick()} />
             )}
             {showEmail && (
@@ -53,6 +61,16 @@ class App extends Component {
                 onCancelClick={() => this.handleEmailBackClick()}
                 onSubmit={() => this.handleSubmit()}
               />
+            )}
+            {showEmailSent && (
+              <div className={"email-confirm"}>
+                <h2>Email Sent!</h2>
+                <Icon
+                  color={"green"}
+                  name="check circle outline"
+                  size="massive"
+                />
+              </div>
             )}
           </Modal.Content>
         </Modal>

@@ -1,6 +1,9 @@
 import "../node_modules/semantic-ui-css/components/button.min.css";
 import "../node_modules/semantic-ui-css/components/form.min.css";
 import "../node_modules/semantic-ui-css/components/message.min.css";
+import "../node_modules/semantic-ui-css/components/input.min.css";
+import "../node_modules/semantic-ui-css/components/label.min.css";
+import "../node_modules/semantic-ui-css/components/container.min.css";
 import { Button, Form, Message } from "semantic-ui-react";
 import React from "react";
 import { withFormik } from "formik";
