@@ -13,7 +13,7 @@ class App extends Component {
     this.state = {
       showEmail: false,
       modalOpen: false,
-      showEmailSent: false
+      showEmailSent: true
     };
     this.props.trigger.addEventListener("click", () =>
       this.handleInviteClick()
@@ -64,7 +64,7 @@ class App extends Component {
             )}
             {showEmailSent && (
               <div className={"email-confirm"}>
-                <h2>Email Sent!</h2>
+                <span className={"email-confirm-header"}>Email Sent!</span>
                 <Icon
                   color={"green"}
                   name="check circle outline"
