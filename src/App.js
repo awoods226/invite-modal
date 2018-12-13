@@ -13,7 +13,7 @@ class App extends Component {
     this.state = {
       showEmail: false,
       modalOpen: false,
-      showEmailSent: true
+      showEmailSent: false
     };
     this.props.trigger.addEventListener("click", () =>
       this.handleInviteClick()
@@ -29,14 +29,15 @@ class App extends Component {
     this.toggleModal();
   };
   toggleModal = () => {
-    this.setState({ modalOpen: !this.state.modalOpen, showEmail: false });
+    this.setState({
+      modalOpen: !this.state.modalOpen,
+      showEmail: false,
+      showEmailSent: false
+    });
   };
   handleSubmit = () => {
     this.setState({ showEmailSent: true, showEmail: false });
-    setTimeout(this.toggleModal, 1750);
-  };
-  handlePortalClose = () => {
-    this.setState({ showEmailSent: false });
+    setTimeout(this.toggleModal, 2500);
   };
   render() {
     const { showEmail, modalOpen, showEmailSent } = this.state;

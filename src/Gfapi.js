@@ -16,7 +16,7 @@ export function submitForm(values) {
 
   let d = new Date();
   let expiration = 3600; // 1 hour,
-  let unixtime = parseInt(d.getTime() / 1000);
+  let unixtime = parseInt(d.getTime() / 1000, 10);
   let future_unixtime = unixtime + expiration;
   let publicKey = "175345e08c";
   let privateKey = "b7b7829a5f82b3f";

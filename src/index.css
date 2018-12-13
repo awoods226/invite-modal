@@ -46,16 +46,24 @@ body.dimmable > .dimmer {
   width: auto !important;
 }
 
-#from {
-  width: 90%;
+.ui.modal,
+.ui.tiny.modal .active {
+  padding: 0px !important;
 }
 
-#email {
-  width: 90%;
+.formField {
+  width: 90% !important;
 }
 
-#message {
-  width: 90%;
+.campusSelect {
+  width: 97%;
+  outline: none !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .campusSelect {
+    width: 100%;
+  }
 }
 
 .email-confirm {
