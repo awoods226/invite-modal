@@ -3,45 +3,11 @@ import "../node_modules/semantic-ui-css/components/form.min.css";
 import "../node_modules/semantic-ui-css/components/message.min.css";
 import "../node_modules/semantic-ui-css/components/input.min.css";
 import "../node_modules/semantic-ui-css/components/label.min.css";
-import "../node_modules/semantic-ui-css/components/container.min.css";
-import { Button, Form, Message } from "semantic-ui-react";
+import { Button, Form, Message, Input } from "semantic-ui-react";
 import React from "react";
 import { withFormik } from "formik";
 import * as yup from "yup";
 import { submitForm } from "./Gfapi";
-import Select from "react-select";
-
-const campusOptions = [
-  {
-    label: "Niceville",
-    value: "Niceville"
-  },
-  {
-    label: "Bluewater Bay",
-    value: "Bluewater Bay"
-  },
-  {
-    label: "North Crestview",
-    value: "North Crestview"
-  },
-  {
-    label: "South Crestview",
-    value: "South Crestview"
-  }
-];
-
-const customStyles = {
-  input: () => ({
-    height: 38,
-    outline: "none"
-  }),
-  control: (base, state) => ({
-    ...base,
-    "&:hover": { borderColor: "gray" }, // border style on hover
-    border: "1px solid rgba(34,36,38,.15)", // default border color
-    boxShadow: "none" // no box-shadow
-  })
-};
 
 const EmailForm = props => {
   const {
@@ -70,7 +36,7 @@ const EmailForm = props => {
     >
       <Form.Field error={errors.fromName && touched.fromName ? true : false}>
         <label>Your Name</label>
-        <input
+        <Input
           id={"fromName"}
           className={"formField"}
           type={"text"}
@@ -82,7 +48,7 @@ const EmailForm = props => {
       </Form.Field>
       <Form.Field error={errors.fromEmail && touched.fromEmail ? true : false}>
         <label>Your Email</label>
-        <input
+        <Input
           className={"formField"}
           id={"fromEmail"}
           type={"text"}
@@ -94,7 +60,7 @@ const EmailForm = props => {
       </Form.Field>
       <Form.Field error={errors.email && touched.email ? true : false}>
         <label>Recipient Email</label>
-        <input
+        <Input
           id={"email"}
           className={"formField"}
           type={"text"}
@@ -106,15 +72,18 @@ const EmailForm = props => {
       </Form.Field>
       <Form.Field error={errors.campus && touched.campus ? true : false}>
         <label>Campus</label>
-        <Select
+        <select
           className={"campusSelect"}
-          onChange={value => setFieldValue("campus", value.value)}
+          value={values.campus}
+          onChange={e => setFieldValue("campus", e.target.value)}
           onBlur={() => setFieldTouched("campus", true)}
-          placeholder="Select Campus"
-          value={{ label: values.campus, value: values.campus }}
-          options={campusOptions}
-          styles={customStyles}
-        />
+        >
+          <option value="">Select a Campus</option>
+          <option value="Niceville">Niceville</option>
+          <option value="Bluewater Bay">Bluewater Bay</option>
+          <option value="North Crestview">North Crestview</option>
+          <option value="South Crestview">South Crestview</option>
+        </select>
       </Form.Field>
       <Message
         error

@@ -50,22 +50,10 @@ body.dimmable > .dimmer {
 .ui.tiny.modal .active {
   padding: 0px !important;
 }
-
-.formField {
-  width: 90% !important;
-}
-
 .campusSelect {
-  width: 97%;
-  outline: none !important;
+  height: 45px !important;
+  outline: none;
 }
-
-@media only screen and (max-width: 600px) {
-  .campusSelect {
-    width: 100%;
-  }
-}
-
 .email-confirm {
   display: flex;
   flex-direction: column;
